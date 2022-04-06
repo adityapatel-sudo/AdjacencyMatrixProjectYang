@@ -1,7 +1,7 @@
 import numpy as np
 
-class AdjacentMatrix:
-    def __init__(self, n, matrix=None):
+class AdjacencyMatrix:
+    def __init__(self, n=1, matrix=None):
         """
         Initializes an adjacency matrix with n vertices
         :param n: the number of vertices
