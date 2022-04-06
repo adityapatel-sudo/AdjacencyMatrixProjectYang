@@ -1,13 +1,18 @@
 import numpy as np
 
 class AdjacentMatrix:
-    def __init__(self, n):
+    def __init__(self, n, matrix=None):
         """
         Initializes an adjacency matrix with n vertices
         :param n: the number of vertices
+        :param matrix: an n x n matrix to make the adjacency matrix
         """
-        self.n = n
-        self.matrix = np.zeros((n,n))
+        if matrix is None:
+            self.n = n
+            self.matrix = np.zeros((n, n))
+        else:
+            self.matrix = matrix
+            self.n = matrix.shape[0]
 
     def addEdge(self, v1, v2):
         """
