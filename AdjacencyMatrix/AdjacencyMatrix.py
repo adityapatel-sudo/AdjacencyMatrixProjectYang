@@ -59,8 +59,8 @@ class AdjacencyMatrix:
         :param numSteps: number of steps to get from v1 to v2
         :return: Boolean giving whether there is a path between v1 and v2
         """
-        np.linalg.matrix_power(self.matrix, numSteps)
-        return self.matrix[v1][v2] != 0
+
+        return self.getStepMatrix(numSteps)[v1][v2] != 0
 
     def shortestDistance(self, v1, v2):
         """
@@ -85,7 +85,7 @@ class AdjacencyMatrix:
         :param numSteps: number of steps
         :return: number of paths
         """
-        return np.linalg.matrix_power(self.matrix, numSteps)[v1][v2]
+        return self.getStepMatrix(numSteps)[v1][v2]
 
     def getStepMatrix(self, numSteps):
         return np.linalg.matrix_power(self.matrix, numSteps)
