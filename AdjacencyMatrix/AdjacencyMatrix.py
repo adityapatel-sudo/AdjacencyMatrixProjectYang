@@ -1,7 +1,7 @@
 import numpy as np
 
 class AdjacencyMatrix:
-    def __init__(self, n=1, matrix=None):
+    def __init__(self, matrix=None, n=1):
         """
         Initializes an adjacency matrix with n vertices
         :param n: the number of vertices
@@ -11,8 +11,8 @@ class AdjacencyMatrix:
             self.n = n
             self.matrix = np.zeros((n, n))
         else:
-            self.matrix = matrix
-            self.n = matrix.shape[0]
+            self.matrix = np.array(matrix)
+            self.n = self.matrix.shape[0]
 
     def addEdge(self, v1, v2):
         """
@@ -69,14 +69,30 @@ class AdjacencyMatrix:
         :param v2: vertex 2
         :return: Shortest number of steps to get from v1 to v2
         """
-        for i in range(self.n):
+        if v1 == v2:
+            return 0
+        for i in range(1, self.n):
             if self.areConnected(v1, v2, i):
                 return i
         return -1
 
 
+    def numPaths(self, v1, v2, numSteps):
+        """
+        Returns the number of paths from v1 to v2 when going numSteps steps
+        :param v1: vertex 1
+        :param v2: vertex 2
+        :param numSteps: number of steps
+        :return: number of paths
+        """
+        return np.linalg.matrix_power(self.matrix, numSteps)[v1][v2]
+
+    def getStepMatrix(self, numSteps):
+        return np.linalg.matrix_power(self.matrix, numSteps)
+
+
 def main():
-    print("hello world")
+    print("Adjacency Matrix")
 
 
 if __name__ == "__main__":
