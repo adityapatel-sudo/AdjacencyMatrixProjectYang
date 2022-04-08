@@ -1,5 +1,6 @@
 import numpy as np
 
+
 class AdjacencyMatrix:
     def __init__(self, matrix=None, n=1):
         """
@@ -76,7 +77,6 @@ class AdjacencyMatrix:
                 return i
         return -1
 
-
     def numPaths(self, v1, v2, numSteps):
         """
         Returns the number of paths from v1 to v2 when going numSteps steps
@@ -89,6 +89,15 @@ class AdjacencyMatrix:
 
     def getStepMatrix(self, numSteps):
         return np.linalg.matrix_power(self.matrix, numSteps)
+
+    def getSN(self):
+        """
+        Returns the Sn matrix of the Adjacency Matrix
+        """
+        final = self.matrix
+        for x in range(2, self.n + 1):
+            final = np.add(final, np.linalg.matrix_power(self.matrix, x))
+        return final
 
 
 def main():
